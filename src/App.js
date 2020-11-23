@@ -122,7 +122,7 @@ function App() {
       <Form>
 
         <Form.Group controlId="formBasicSearch">
-          <Form.Label>Search</Form.Label>
+          <Form.Label>Search(Please input first letter in caps)</Form.Label>
           <Form.Control 
            type="text" 
            placeholder="Search a country"
