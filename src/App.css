@@ -6,8 +6,25 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .image {
-      width:40%;
-      margin: 4% 31%;
-    }
+  .image {
+    width:40%;
+    margin: 4% 31%;
   }
+}
+
+.global{
+  animation:slideInFromTop 1s ease-in;
+}
+
+
+@keyframes slideInFromTop{
+
+  0%{
+      transform: translateY(-170%);    /*  moved to top  */
+
+  }
+
+  100%{
+      transform: translateX(0);
+  }
+}

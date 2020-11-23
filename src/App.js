@@ -79,46 +79,48 @@ function App() {
     <div className="App">
       <img src={coroImg} className="image" alt ="COVID" />
       {/* <h2 style ={{textAlign: "center"}}> Covid-19 Live Stats </h2> */}
-      <CardDeck>
-          <Card bg="secondary" text="white" className="text-center" style={{margin:"10px"}}>
-            {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
-            <Card.Body>
-              <Card.Title> Cases </Card.Title>
-              <Card.Text>
-                <CountUp start={latest.cases} end={latest.cases} duration={0.5} separator="," /> 
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small>Last updated {lastUpdated}</small>
-            </Card.Footer>
-          </Card>
+      <div className="global">
+        <CardDeck>
+            <Card bg="secondary" text="white" className="text-center" style={{margin:"10px"}}>
+              {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
+              <Card.Body>
+                <Card.Title> Cases </Card.Title>
+                <Card.Text>
+                  <CountUp start={latest.cases} end={latest.cases} duration={0.5} separator="," /> 
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small>Last updated {lastUpdated}</small>
+              </Card.Footer>
+            </Card>
 
-          <Card className="text-center" bg="success" text="white" style={{margin:"10px"}}>
-            {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
-            <Card.Body>
-              <Card.Title>Recovered</Card.Title>
-              <Card.Text>
-              <CountUp start={latest.recovered} end={latest.recovered} duration={0.5} separator="," />
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small> Last updated {lastUpdated} </small>
-            </Card.Footer>
-          </Card>
+            <Card className="text-center" bg="success" text="white" style={{margin:"10px"}}>
+              {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
+              <Card.Body>
+                <Card.Title>Recovered</Card.Title>
+                <Card.Text>
+                <CountUp start={latest.recovered} end={latest.recovered} duration={0.5} separator="," />
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small> Last updated {lastUpdated} </small>
+              </Card.Footer>
+            </Card>
 
-          <Card className="text-center" bg="danger" text="white" style={{margin:"10px"}}>
-            <Card.Body>
-              <Card.Title> Deaths </Card.Title>
-              <Card.Text>
-              <CountUp start={latest.deaths} end={latest.deaths} duration={1} separator="," />
+            <Card className="text-center" bg="danger" text="white" style={{margin:"10px"}}>
+              <Card.Body>
+                <Card.Title> Deaths </Card.Title>
+                <Card.Text>
+                <CountUp start={latest.deaths} end={latest.deaths} duration={1} separator="," />
 
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small> Last updated {lastUpdated} </small>
-            </Card.Footer>
-          </Card>
-      </CardDeck>
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small> Last updated {lastUpdated} </small>
+              </Card.Footer>
+            </Card>
+        </CardDeck>
+      </div>
       <Form>
 
         <Form.Group controlId="formBasicSearch">
@@ -134,8 +136,10 @@ function App() {
       </Form>
 
       <Columns queries={queries}>
+      
       {countries}
       </Columns>
+      
     </div>
   );
 }
