@@ -43,7 +43,7 @@ function App() {
   const lastUpdated = date.toString();
 
   const filterCountries = results.filter(item =>{
-    return searchCountries !== "" ? item.country.includes(searchCountries) : item;
+    return searchCountries !== "" ? item.country.toLowerCase().includes(searchCountries.toLowerCase()) : item;
   })
 
 
@@ -54,12 +54,12 @@ function App() {
             <Card.Body>
             
               <Card.Title> {data.country} </Card.Title>
-              <Card.Text> Cases: <CountUp start={0} end={data.cases} duration={2} separator="," /> </Card.Text>
-              <Card.Text> Recovered: <CountUp start={0} end={data.recovered} duration={2} separator="," /> </Card.Text>
-              <Card.Text> Deaths: <CountUp start={0} end={data.deaths} duration={2} separator="," /> </Card.Text>
-              <Card.Text> Today's Cases: <CountUp start={0} end={data.todayCases} duration={2} separator="," /> </Card.Text>
-              <Card.Text> Today's Deaths: <CountUp start={0} end={data.todayDeaths} duration={2} separator="," /> </Card.Text>
-              <Card.Text> Active: <CountUp start={0} end={data.active} duration={2} separator="," /> </Card.Text>
+              <Card.Text> Cases: <CountUp start={0} end={data.cases} duration={1.5} separator="," /> </Card.Text>
+              <Card.Text> Recovered: <CountUp start={0} end={data.recovered} duration={1.5} separator="," /> </Card.Text>
+              <Card.Text> Deaths: <CountUp start={0} end={data.deaths} duration={1.5} separator="," /> </Card.Text>
+              <Card.Text> Today's Cases: <CountUp start={0} end={data.todayCases} duration={1.5} separator="," /> </Card.Text>
+              <Card.Text> Today's Deaths: <CountUp start={0} end={data.todayDeaths} duration={1.5} separator="," /> </Card.Text>
+              <Card.Text> Active: <CountUp start={0} end={data.active} duration={1.5} separator="," /> </Card.Text>
             </Card.Body>
           </Card>)
   });
@@ -127,7 +127,7 @@ function App() {
           <Form.Label>Search:</Form.Label>
           <Form.Control 
            type="text" 
-           placeholder="Search a country (Please input first letter in caps)"
+           placeholder="Search a country"
            onChange = {e => setSearchCountries(e.target.value)}
            autocomplete ="off"
           />
