@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import coroImg from './images/image.png'
 
+import Pagination from "./Pagination";
 
 // External imports
 import CountUp from 'react-countup';
@@ -21,6 +22,8 @@ import Columns from "react-columns";
 function App() {
   const [latest, setLatest] = useState([]);
   const [results, setResults] = useState([]);
+  const [currentPage, setCurrrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
   const [searchCountries, setSearchCountries] = useState("");
 
   useEffect(() =>{
@@ -39,6 +42,9 @@ function App() {
       });
   }, []);
 
+  
+
+
   const date = new Date(parseInt(latest.updated));
   const lastUpdated = date.toString();
 
@@ -46,11 +52,19 @@ function App() {
     return searchCountries !== "" ? item.country.toLowerCase().includes(searchCountries.toLowerCase()) : item;
   })
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filterCountries.slice(indexOfFirstPost, indexOfLastPost);
 
-  const countries = filterCountries.map((data, i) =>{
+  const paginate = (pageNumber) => setCurrrentPage(pageNumber)
+
+
+  const countries = currentPosts
+  // .filter((data, i) => i < 10)
+  .map((data, i) =>{
     return(
       <Card key={i} bg="light" text="dark" className="text-center" style={{margin:"10px"}}>
-            <Card.Img variant="top" src={data.countryInfo.flag} />
+            <Card.Img src={data.countryInfo.flag} className="flag-img" /> 
             <Card.Body>
             
               <Card.Title> {data.country} </Card.Title>
@@ -74,6 +88,7 @@ function App() {
     columns: 3,
     query: 'min-width: 1000px'
   }];
+  
 
   return (
     <div className="App">
@@ -138,8 +153,10 @@ function App() {
       <Columns queries={queries}>
       
       {countries}
+
       </Columns>
-      
+      <Pagination postsPerPage ={postsPerPage} totalPosts ={results.length} paginate = {paginate} />
+
     </div>
   );
 }
